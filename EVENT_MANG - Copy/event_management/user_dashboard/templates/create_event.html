@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url("https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?cs=srgb&dl=daylight-environment-forest-459225.jpg&fm=jpg");
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: black;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            color: black;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 1.5rem;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            color: black;
+        }
+
+        label {
+            font-size: 14px;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        input, textarea, select {
+            background: rgba(255, 255, 255, 0.43);
+            border: none;
+            border-radius: 5px;
+            padding: 0.75rem;
+            font-size: 14px;
+            color: black;
+            width: 100%;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: hsla(0, 0.00%, 0.00%, 0.72);
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        button {
+            background: linear-gradient(135deg,hsl(269, 31.40%, 59.40%), #2575fc);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg,hsl(216, 2.60%, 37.50%), #6a11cb);
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 20px;
+            }
+
+            input, textarea, select, button {
+                font-size: 13px;
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Create Event</h2>
+        <form method="post">
+            {% csrf_token %}
+            
+            <label for="name">Event Name:</label>
+            <input type="text" name="name" placeholder="Enter event name" required>
+            
+            <label for="description">Description:</label>
+            <textarea name="description" placeholder="Write a brief description" required></textarea>
+            
+            <label for="location">Location:</label>
+            <input type="text" name="location" placeholder="Enter location" required>
+            
+            <label for="date">Date:</label>
+            <input type="datetime-local" name="date" required>
+            
+            <label for="category">Category:</label>
+            <select name="category" required>
+                <option value="" disabled selected>Select a category</option>
+                <option value="business">Business</option>
+                <option value="music">Music</option>
+                <option value="sports">Sports</option>
+                <option value="tech">Tech</option>
+            </select>
+            
+            <button type="submit">Create Event</button>
+            <button><a href="{% url 'dashboard' %}" class="btn-create-event">Back</a></button>
+
+        </form>
+    </div>
+</body>
+</html>
