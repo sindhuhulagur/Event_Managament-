@@ -41,8 +41,9 @@ Follow these steps to create and activate a virtual environment for the Django p
 
 ### Create a Virtual Environment
 
-
+```bash
 python -m venv venv
+
 Activate the Virtual Environment
 On Mac/Linux:
 bash
